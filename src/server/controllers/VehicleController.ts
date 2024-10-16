@@ -1,9 +1,9 @@
 import { Request, Response, RequestHandler } from 'express';
 import { VehicleService } from '../services/VehicleService';
-import { VehicleRepository } from '../repositories/VehicleRepository';
+import { MongoVehicleRepository } from '../repositories/MongoVehicleRepository'; 
 import { IVehicle } from '../interfaces/IVehicle';
 
-const vehicleRepository = new VehicleRepository();
+const vehicleRepository = new MongoVehicleRepository();
 const vehicleService = new VehicleService(vehicleRepository);
 
 class VehicleController {

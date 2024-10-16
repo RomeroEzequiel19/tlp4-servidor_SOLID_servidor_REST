@@ -2,6 +2,8 @@ import express, {Application} from "express"
 import morgan from "morgan"
 import cors from "cors"
 import vehicleRouter from "./routes/vehicle.routes"
+import { dbConnect } from "./db/connect.mongo"
+import clientRouter from "./routes/client.routes"
 
 class Server {
     private app: Application
@@ -9,14 +11,14 @@ class Server {
 
     constructor() {
         this.app = express()
-        this.port = "3001"
+        this.port = "4001"
         this.dbConnection()
         this.middlewares()
         this.routes()
     }
 
     async dbConnection() {
-        console.log("Se conectó a la base de datos")
+        await dbConnect()
     }
 
     middlewares(): void {
@@ -27,6 +29,7 @@ class Server {
 
     routes(): void {
         this.app.use("/api/", vehicleRouter)
+        this.app.use("/api/", clientRouter)
     }
 
     listen():void {

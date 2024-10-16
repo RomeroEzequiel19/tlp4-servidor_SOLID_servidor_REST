@@ -1,9 +1,9 @@
-import { Request, RequestHandler, Response } from 'express';
+import { Request, Response } from 'express';
 import { ClientService } from '../services/ClientService';
-import { ClientRepository } from '../repositories/ClientRepository';
+import { MongoClientRepository } from '../repositories/MongoClientRepository';
 import { IClient } from '../interfaces/IClient'; 
 
-const clientRepository = new ClientRepository();
+const clientRepository = new MongoClientRepository();
 const clientService = new ClientService(clientRepository);
 
 class ClientController {
